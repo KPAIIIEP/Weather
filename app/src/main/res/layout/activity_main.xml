@@ -22,15 +22,17 @@
             android:fitsSystemWindows="true"
             app:contentScrim="?attr/colorPrimary"
             app:layout_scrollFlags="scroll|exitUntilCollapsed"
-            app:toolbarId="@+id/toolbar">
+            app:toolbarId="@+id/toolbar"
+            app:maxLines="2"
+            app:expandedTitleMargin="16dp">
 
             <TextView
+                android:id="@+id/collapse_text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="32dp"
+                android:layout_marginStart="16dp"
                 android:layout_marginTop="16dp"
-                app:layout_collapseMode="parallax"
-                android:text="Подробно"/>
+                app:layout_collapseMode="parallax" />
 
             <ImageView
                 android:id="@+id/toolbarImage"

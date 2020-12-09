@@ -15,7 +15,7 @@ class SettingsFragment : Fragment() {
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        val view: View = inflater.inflate(R.layout.forecast_page, container, false)
+        val view: View = inflater.inflate(R.layout.settings_page, container, false)
         val textView: TextView = view as TextView
         textView.text = "settings"
         return view

@@ -16,5 +16,5 @@ data class WeatherDetails(
         @SerializedName("speed")
         var speed: Double,
         @SerializedName("deg")
-        var degrees: Int,
+        var degrees: Int
 )

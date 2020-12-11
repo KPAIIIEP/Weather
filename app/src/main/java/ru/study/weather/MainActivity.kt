@@ -29,7 +29,7 @@ class MainActivity : AppCompatActivity() {
         val tabLayout: TabLayout = findViewById(R.id.tabs)
         tabLayout.setupWithViewPager(viewPager)
 
-        viewModel.weatherData.observe(this) {
+        viewModel.weatherData?.observe(this) {
             // update UI
             it.weatherDetails[0].apply {
                 val formatDate = Utils.formatDate(dateTime)

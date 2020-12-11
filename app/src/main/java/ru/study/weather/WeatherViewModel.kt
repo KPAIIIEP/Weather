@@ -1,10 +1,11 @@
 package ru.study.weather
 
+import android.app.Application
+import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
-import androidx.lifecycle.ViewModel
 import ru.study.weather.model.WeatherData
 
-class WeatherViewModel : ViewModel() {
-    private val weatherRepository: WeatherRepository = WeatherRepository()
-    val weatherData: LiveData<WeatherData> = weatherRepository.getForecastDaily()
+class WeatherViewModel(application: Application) : AndroidViewModel(application) {
+    private val weatherRepository: WeatherRepository = WeatherRepository(getApplication())
+    val weatherData: LiveData<WeatherData>? = weatherRepository.getWeatherData()
 }

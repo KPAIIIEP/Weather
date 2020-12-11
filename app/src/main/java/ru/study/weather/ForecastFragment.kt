@@ -29,7 +29,7 @@ class ForecastFragment : Fragment() {
         recyclerView = view.findViewById<RecyclerView>(R.id.recycler_view).apply {
             layoutManager = linearLayoutManager
             adapter = weatherAdapter
-            viewModel.weatherData.observe(viewLifecycleOwner) {
+            viewModel.weatherData?.observe(viewLifecycleOwner) {
                 // 1-й элемент выводится в заголовок, поэтому - sublist
                 weatherAdapter.weatherDetails = it.weatherDetails.subList(1, it.weatherDetails.size)
                 recyclerView.adapter?.notifyDataSetChanged()

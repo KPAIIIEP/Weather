@@ -11,7 +11,7 @@ private const val BASE_URL = "http://api.openweathermap.org/data/2.5/"
 
 interface WeatherApi {
     @GET("forecast/daily?lang=ru")
-    fun getForecastDaily(@Query(value = "q", encoded = true) q: String = "Moskva",
+    fun getForecastDaily(@Query("q") q: String = "Moskva",
                          @Query("units") units: String = "metric",
                          @Query("cnt") cnt: Int = 7,
                          @Query("appid") appId: String = API_KEY): Call<WeatherData>

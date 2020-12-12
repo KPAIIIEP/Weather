@@ -5,6 +5,7 @@ import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy.REPLACE
 import androidx.room.Query
+import androidx.room.Transaction
 import ru.study.weather.model.WeatherData
 
 @Dao
@@ -17,4 +18,10 @@ interface WeatherDao {
 
     @Query("SELECT * FROM weather_data")
     fun load(): LiveData<WeatherData>
+
+    @Transaction
+    fun deleteAndSave(weatherData: WeatherData) {
+        deleteAll()
+        save(weatherData)
+    }
 }

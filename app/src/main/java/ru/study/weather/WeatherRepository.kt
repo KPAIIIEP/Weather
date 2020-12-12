@@ -1,6 +1,7 @@
 package ru.study.weather
 
 import android.content.Context
+import android.content.SharedPreferences
 import androidx.lifecycle.LiveData
 import retrofit2.Call
 import retrofit2.Callback
@@ -15,6 +16,8 @@ class WeatherRepository(context: Context) {
     private val weatherApi: WeatherApi = WeatherApi.weatherApi
     private val executor: Executor = Executors.newSingleThreadExecutor()
     private val weatherDao: WeatherDao? = WeatherDatabase.getInstance(context)?.weatherDao()
+    private val sharedPreferences: SharedPreferences = context
+            .getSharedPreferences("settings", Context.MODE_PRIVATE)
 
     fun getWeatherData(): LiveData<WeatherData>? {
         refreshWeatherData()
@@ -22,7 +25,8 @@ class WeatherRepository(context: Context) {
     }
 
     private fun refreshWeatherData() {
-        weatherApi.getForecastDaily()
+        sharedPreferences.getString("city", "")?.let { it ->
+            weatherApi.getForecastDaily(q = it)
                 .enqueue(object : Callback<WeatherData> {
                     override fun onFailure(call: Call<WeatherData>, t: Throwable) {
 
@@ -30,11 +34,13 @@ class WeatherRepository(context: Context) {
                     override fun onResponse(call: Call<WeatherData>, response: Response<WeatherData>) {
                         executor.execute {
                             response.body()?.let {
-                                weatherDao?.deleteAll()
-                                weatherDao?.save(it)
+                                weatherDao?.deleteAndSave(it)
+                                //weatherDao?.deleteAll()
+                                //weatherDao?.save(it)
                             }
                         }
                     }
                 })
+        }
     }
 }

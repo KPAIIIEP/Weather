@@ -4,7 +4,6 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.SavedStateViewModelFactory
@@ -17,12 +16,8 @@ class ForecastFragment : Fragment() {
     lateinit var weatherAdapter: WeatherAdapter
     lateinit var recyclerView: RecyclerView
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        //retainInstance = true
-    }
-
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
+                              savedInstanceState: Bundle?): View? {
         val view: View = inflater.inflate(R.layout.forecast_page, container, false)
         val linearLayoutManager = LinearLayoutManager(activity)
         weatherAdapter = WeatherAdapter(mutableListOf())
@@ -30,6 +25,7 @@ class ForecastFragment : Fragment() {
             layoutManager = linearLayoutManager
             adapter = weatherAdapter
             viewModel.weatherData?.observe(viewLifecycleOwner) {
+                it?: return@observe
                 // 1-й элемент выводится в заголовок, поэтому - sublist
                 weatherAdapter.weatherDetails = it.weatherDetails.subList(1, it.weatherDetails.size)
                 recyclerView.adapter?.notifyDataSetChanged()

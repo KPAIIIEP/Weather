@@ -8,4 +8,6 @@ import ru.study.weather.model.WeatherData
 class WeatherViewModel(application: Application) : AndroidViewModel(application) {
     private val weatherRepository: WeatherRepository = WeatherRepository(getApplication())
     val weatherData: LiveData<WeatherData>? = weatherRepository.getWeatherData()
+
+    fun retry() = weatherRepository.getWeatherData()
 }

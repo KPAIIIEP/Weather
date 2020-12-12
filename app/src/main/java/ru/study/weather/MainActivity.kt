@@ -1,5 +1,6 @@
 package ru.study.weather
 
+import android.content.Context
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.ImageView
@@ -21,6 +22,12 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        val sharedPreference = getSharedPreferences(
+                "settings", Context.MODE_PRIVATE)
+        if (!sharedPreference.contains("city")) {
+            Utils.setSharedPrefValue(sharedPreference, "city", "Moskva")
+        }
+
         setSupportActionBar(findViewById(R.id.toolbar))
 
         val viewPager: ViewPager = findViewById(R.id.viewpager)
@@ -30,6 +37,7 @@ class MainActivity : AppCompatActivity() {
         tabLayout.setupWithViewPager(viewPager)
 
         viewModel.weatherData?.observe(this) {
+            it?: return@observe
             // update UI
             it.weatherDetails[0].apply {
                 val formatDate = Utils.formatDate(dateTime)

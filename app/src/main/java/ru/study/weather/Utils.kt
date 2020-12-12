@@ -1,5 +1,6 @@
 package ru.study.weather
 
+import android.content.SharedPreferences
 import java.text.DateFormat
 import java.util.*
 
@@ -18,6 +19,13 @@ class Utils {
                 "Snow" -> R.drawable.ic_snow
                 else -> R.drawable.ic_broken_clouds // нет иконки
             }
+        }
+
+        fun setSharedPrefValue(sharedPreferences: SharedPreferences,
+                               key: String, value: String) {
+            val editor = sharedPreferences.edit()
+            editor.putString(key, value)
+            editor.apply()
         }
     }
 }

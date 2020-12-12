@@ -21,6 +21,20 @@ class Utils {
             }
         }
 
+        fun getWindDirection(degrees: Int) : String {
+            return when (degrees) {
+                in 337..360 -> "C"
+                in 292..336 -> "C-З"
+                in 247..291 -> "З"
+                in 202..246 -> "Ю-З"
+                in 157..201 -> "Ю"
+                in 122..156 -> "Ю-В"
+                in 67..121 -> "В"
+                in 22..66 -> "С-В"
+                else -> "С"
+            }
+        }
+
         fun setSharedPrefValue(sharedPreferences: SharedPreferences,
                                key: String, value: String) {
             val editor = sharedPreferences.edit()

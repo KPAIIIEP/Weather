@@ -1,4 +1,4 @@
-package ru.study.weather
+package ru.study.weather.ui
 
 import android.content.Context
 import androidx.appcompat.app.AppCompatActivity
@@ -11,6 +11,9 @@ import androidx.lifecycle.SavedStateViewModelFactory
 import androidx.viewpager.widget.ViewPager
 import com.google.android.material.appbar.CollapsingToolbarLayout
 import com.google.android.material.tabs.TabLayout
+import ru.study.weather.R
+import ru.study.weather.Utils
+import ru.study.weather.WeatherViewModel
 import java.util.*
 import kotlin.math.roundToInt
 
@@ -45,7 +48,7 @@ class MainActivity : AppCompatActivity() {
                 val pressure = (pressure * 0.75).toInt()
                 val details = "Погода на $formatDate\n" +
                         "$weather\n" +
-                        "Ветер: $speed м/с, $degrees\n" +
+                        "Ветер: $speed м/с, ${Utils.getWindDirection(degrees)}\n" +
                         "Влажность: $humidity%\n" +
                         "Давление: $pressure мм рт.с."
                 findViewById<TextView>(R.id.collapse_text).text = details

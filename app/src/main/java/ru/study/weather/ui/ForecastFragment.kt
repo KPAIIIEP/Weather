@@ -1,4 +1,4 @@
-package ru.study.weather
+package ru.study.weather.ui
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -9,6 +9,8 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.SavedStateViewModelFactory
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import ru.study.weather.R
+import ru.study.weather.WeatherViewModel
 
 class ForecastFragment : Fragment() {
     private val viewModel: WeatherViewModel by viewModels(factoryProducer = {

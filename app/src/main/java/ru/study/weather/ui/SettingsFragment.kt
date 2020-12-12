@@ -1,4 +1,4 @@
-package ru.study.weather
+package ru.study.weather.ui
 
 import android.content.Context
 import android.os.Bundle
@@ -13,6 +13,9 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.SavedStateViewModelFactory
 import com.google.android.material.textfield.TextInputLayout
 import kotlinx.android.synthetic.main.settings_page.*
+import ru.study.weather.R
+import ru.study.weather.Utils
+import ru.study.weather.WeatherViewModel
 
 class SettingsFragment : Fragment() {
     private val viewModel: WeatherViewModel by viewModels(factoryProducer = {

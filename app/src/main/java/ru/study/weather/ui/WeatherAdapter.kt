@@ -1,4 +1,4 @@
-package ru.study.weather
+package ru.study.weather.ui
 
 import android.view.LayoutInflater
 import android.view.View
@@ -6,6 +6,8 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import ru.study.weather.R
+import ru.study.weather.Utils
 import ru.study.weather.model.WeatherDetails
 import kotlin.math.roundToInt
 

@@ -2,7 +2,7 @@ package ru.study.weather.model
 
 import com.google.gson.annotations.SerializedName
 
-data class WeatherDetails(
+class WeatherDetails(
         @SerializedName("dt")
         var dateTime: Int,
         @SerializedName("temp")

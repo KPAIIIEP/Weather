@@ -6,7 +6,7 @@ import ru.study.weather.database.WeatherDetailsConverter
 
 @Entity(tableName = "weather_data")
 @TypeConverters(WeatherDetailsConverter::class)
-data class WeatherData(
+class WeatherData(
         @PrimaryKey(autoGenerate = true)
         var weatherId: Int = 0,
         var dateTime: Long = System.currentTimeMillis(),
